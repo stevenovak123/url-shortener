@@ -39,7 +39,7 @@ const LandingPage = () => {
 
       <Accordion
         type='multiple'
-        collapsible
+        collapsible='true'
         className='w-full py-11 md:px-11 mb-10'
       >
         <AccordionItem value='item-1'>
