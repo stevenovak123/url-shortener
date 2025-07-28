@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Auth from './pages/Auth';
 import Linking from './pages/Linking';
 import Redirect from './pages/redirect';
+import UrlProvider from './Context';
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <UrlProvider>
+      <RouterProvider router={router} />;
+    </UrlProvider>
+  );
 }
 
 export default App;
