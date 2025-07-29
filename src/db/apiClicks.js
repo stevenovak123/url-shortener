@@ -1,0 +1,41 @@
+import supabase from './supbase';
+import { UAParser } from 'ua-parser-js';
+
+export async function getClicksForUrls(urlIds) {
+  const { data, error } = await supabase
+    .from('clicks')
+    .select('*')
+    .in('url_id', urlIds);
+
+  if (error) {
+    throw new Error('Unable to load Clicks');
+  }
+  return data;
+}
+
+const parser = new UAParser();
+
+export const storeClicks = async ({ id, originalUrl }) => {
+  try {
+    const res = parser.getResult();
+    const device = res.type || 'desktop';
+
+    //below link gives your device details
+    const response = await fetch('https://ipapi.co/json');
+
+    const { city, country_name: country } = await response.json();
+
+    await supabase.from('clicks').insert({
+      url_id: id,
+      city: city,
+      country: country,
+      device: device,
+    });
+    console.log(originalUrl);
+    window.location.href = originalUrl;
+  } catch (e) {
+    if (error) {
+      throw new Error('unable to fetch');
+    }
+  }
+};
