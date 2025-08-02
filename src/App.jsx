@@ -5,7 +5,7 @@ import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import Auth from './pages/Auth';
 import Linking from './pages/Linking';
-import Redirect from './pages/redirect';
+import Redirect from './pages/Redirect';
 import UrlProvider from './Context';
 import RequireAuth from './components/Require-Auth';
 
